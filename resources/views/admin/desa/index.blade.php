@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->population ? number_format($item->population, 0, ',', '.') : '-' }}</td>
-                    <td>{{ $item->area ? number_format($item->area, 2, ',', '.') . ' km²' : '-' }}</td>
+                    <td>{{ $item->area ? $item->area . ' km²' : '-' }}</td>
                     <td>{{ $item->contact_phone ?? '-' }}</td>
                     <td>
                         <div class="action-box">
