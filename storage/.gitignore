@@ -1,0 +1,4 @@
+﻿*
+!public/
+!.gitignore
+!public/.gitignore
