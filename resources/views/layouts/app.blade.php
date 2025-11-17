@@ -30,8 +30,8 @@
 				<a href="{{ route('berita') }}">Berita</a>
 				<a href="{{ route('layanan') }}">Layanan</a>
 				<a href="{{ route('kegiatan') }}">Kegiatan</a>
-				<a href="{{ route('pengumuman') }}">Informasi</a>
-				<a href="{{ route('data-pegawai') }}">Data Pegawai</a>
+				<a href="{{ route('pengumuman') }}">Pengumuman</a>
+				<a href="{{ route('pages.data_pegawai') }}">Informasi Desa</a>
 				<a href="{{ route('kontak') }}">Kontak</a>
 			</nav>
 		</div>

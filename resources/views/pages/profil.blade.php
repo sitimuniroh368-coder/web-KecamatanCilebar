@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="section">
-    <h2 class="section-title">Profil Kecamatan Cilebar</h2>
+    <h2 class="section-title" style="text-align: center !important;">Profil Kecamatan Cilebar</h2>
     <div class="profile-tabs">
         <nav class="profile-tablist" role="tablist" aria-label="Profil Tabs">
             <button class="profile-tab is-active" data-target="#overview" role="tab" aria-selected="true">Gambaran Umum</button>
@@ -92,38 +92,73 @@
             </section>
 
             <section id="pegawai" class="profile-panel" role="tabpanel" hidden>
-                <div class="card">
-                    <h3>Data Pegawai</h3>
+                <div class="card" style="padding: 40px 20px 60px;">
+                    <div class="pegawai-page-header">
+                        <h1 class="pegawai-page-title">Data Pegawai Kecamatan</h1>
+                        <p class="pegawai-page-subtitle">Struktur Organisasi &amp; Pegawai Kecamatan Cilebar</p>
+                    </div>
                     @php
-                    use App\Models\Employee;
-                    if (!isset($employees)) {
-                    $employees = Employee::orderBy('display_order')->orderBy('name')->get();
-                    }
+                        use App\Models\Employee;
+                        if (!isset($employees)) {
+                            $employees = Employee::orderBy('display_order')->orderBy('name')->get();
+                        }
+                        $groupedEmployees = $employees->groupBy(function ($employee) {
+                            return $employee->division ?? 'Lainnya';
+                        });
                     @endphp
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Jabatan</th>
-                                <th>Bidang</th>
-                                <th>Urutan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($employees as $employee)
-                            <tr>
-                                <td>{{ $employee->name }}</td>
-                                <td>{{ $employee->position }}</td>
-                                <td>{{ $employee->division ?? '-' }}</td>
-                                <td>{{ $employee->display_order ?? '-' }}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="muted">Data pegawai belum tersedia.</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+
+                    @if ($groupedEmployees->isEmpty())
+                        <div style="text-align: center; padding: 40px;">
+                            <p class="muted">Data pegawai belum tersedia.</p>
+                        </div>
+                    @else
+                        @foreach ($groupedEmployees as $division => $divisionEmployees)
+                            @if ($division && $division !== 'Lainnya')
+                                <div class="pegawai-division-section" style="margin-top: 30px; margin-bottom: 20px;">
+                                    <h2 class="pegawai-division-title" style="font-size: 18px; font-weight: 600; margin: 0;">{{ $division }}</h2>
+                                </div>
+                            @endif
+
+                            <div class="pegawai-grid">
+                                @foreach ($divisionEmployees as $employee)
+                                    <div class="pegawai-card">
+                                        <div class="pegawai-photo-wrapper">
+                                            @php
+                                                $photoFilename = $employee->photo_path ? basename($employee->photo_path) : null;
+                                                $photoPath = $photoFilename ? public_path('uploads/' . $photoFilename) : null;
+                                            @endphp
+
+                                            @if ($photoFilename && $photoPath && file_exists($photoPath))
+                                                <img src="{{ asset('uploads/' . $photoFilename) }}" alt="{{ $employee->name }}" class="pegawai-photo" />
+                                            @else
+                                                <div class="pegawai-photo-placeholder">
+                                                    <i class="fa-solid fa-user"></i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="pegawai-info">
+                                            <h3 class="pegawai-name">{{ $employee->name }}</h3>
+                                            <p class="pegawai-position">{{ $employee->position }}</p>
+                                            @if ($employee->phone || $employee->email)
+                                                <div class="pegawai-contact">
+                                                    @if ($employee->phone)
+                                                        <a href="tel:{{ preg_replace('/[^0-9]/', '', $employee->phone) }}" class="pegawai-contact-icon" title="Telepon">
+                                                            <i class="fa-solid fa-phone"></i>
+                                                        </a>
+                                                    @endif
+                                                    @if ($employee->email)
+                                                        <a href="mailto:{{ $employee->email }}" class="pegawai-contact-icon" title="Email">
+                                                            <i class="fa-solid fa-envelope"></i>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </section>
         </div>

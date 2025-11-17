@@ -39,6 +39,12 @@
             'route' => route('admin.employees.index'),
         ],
         [
+            'key' => 'admin.desa',
+            'label' => 'Informasi Desa',
+            'icon' => 'fa-solid fa-map-pin',
+            'route' => route('admin.desa.index'),
+        ],
+        [
             'key' => 'admin.welcome',
             'label' => 'Sambutan',
             'icon' => 'fa-solid fa-hand-holding-heart',

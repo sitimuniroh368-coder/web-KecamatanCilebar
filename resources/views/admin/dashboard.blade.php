@@ -29,6 +29,13 @@
                 'accent' => 'accent-service',
             ],
             [
+                'title' => 'Informasi Desa',
+                'value' => $desaCount,
+                'desc' => 'Data desa dan wilayah',
+                'icon' => 'fa-solid fa-map',
+                'accent' => 'accent-desa',
+            ],
+            [
                 'title' => 'Kotak Masuk',
                 'value' => $inboxCount,
                 'desc' => 'Pesan dari masyarakat',
@@ -55,6 +62,12 @@
                 'desc' => 'Perbarui daftar pelayanan',
                 'route' => route('admin.services.create'),
                 'icon' => 'fa-solid fa-plus',
+            ],
+            [
+                'label' => 'Kelola Desa',
+                'desc' => 'Perbarui informasi desa',
+                'route' => route('admin.desa.index'),
+                'icon' => 'fa-solid fa-map',
             ],
             [
                 'label' => 'Upload Galeri',

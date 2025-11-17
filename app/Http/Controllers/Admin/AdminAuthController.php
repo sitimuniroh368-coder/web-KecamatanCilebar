@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\Contact;
+use App\Models\Desa;
 use App\Models\News;
 use App\Models\Service;
 use Illuminate\Http\RedirectResponse;
@@ -59,10 +60,11 @@ class AdminAuthController extends Controller
         $newsCount = News::count();
         $announcementCount = Announcement::count();
         $serviceCount = Service::count();
+        $desaCount = Desa::count();
         $inboxCount = Contact::count();
         $todayInboxCount = Contact::whereDate('created_at', now()->toDateString())->count();
 
-        return view('admin.dashboard', compact('newsCount', 'announcementCount', 'serviceCount', 'inboxCount', 'todayInboxCount'));
+        return view('admin.dashboard', compact('newsCount', 'announcementCount', 'serviceCount', 'desaCount', 'inboxCount', 'todayInboxCount'));
     }
 }
 

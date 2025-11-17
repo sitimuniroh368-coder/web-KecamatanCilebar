@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use Illuminate\View\View;
 
 class DataPegawaiController extends Controller
 {
     public function index(): View
     {
-        $employees = Employee::orderBy('display_order')->orderBy('name')->get();
+        // Data desa diambil langsung dari view (hardcoded untuk sekarang)
+        // Di masa depan bisa diambil dari database jika ada tabel Desa
 
-        $groupedEmployees = $employees->groupBy(function ($employee) {
-            return $employee->division ?? 'Lainnya';
-        });
-
-        return view('pages.data_pegawai', compact('groupedEmployees'));
+        return view('pages.data_pegawai');
     }
 }
-

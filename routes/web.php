@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InboxController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Admin\WilayahController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataPegawaiController;
+use App\Http\Controllers\DesaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LayananController;
@@ -33,7 +35,8 @@ Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan');
 Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak');
 Route::post('/kontak', [ContactController::class, 'store'])->name('kontak.store');
-Route::get('/data-pegawai', [DataPegawaiController::class, 'index'])->name('data-pegawai');
+Route::get('/data-pegawai', [DataPegawaiController::class, 'index'])->name('pages.data_pegawai');
+Route::get('/desa/{slug}', [DesaController::class, 'show'])->name('desa.show');
 
 // Admin Auth Routes
 Route::prefix('admin')->group(function () {
@@ -49,6 +52,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('services', ServiceController::class)->names('admin.services')->except(['show']);
         Route::resource('gallery', GalleryController::class)->names('admin.gallery')->only(['index', 'create', 'store', 'destroy']);
         Route::resource('employees', EmployeeController::class)->names('admin.employees')->except(['show']);
+        Route::resource('desa', AdminDesaController::class)->names('admin.desa')->except(['show']);
 
         Route::get('/welcome', [WelcomeController::class, 'edit'])->name('admin.welcome');
         Route::post('/welcome', [WelcomeController::class, 'update'])->name('admin.welcome.update');
