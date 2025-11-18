@@ -13,6 +13,10 @@ body {
 	line-height: 1.6;
 }
 
+:root {
+	--admin-topbar-height: 72px;
+}
+
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -1133,23 +1137,51 @@ button.admin-nav-link:focus-visible {
 
 /* Mobile: hide sidebar by default and show toggle */
 @media (max-width: 968px) {
-	.admin-toggle-btn { display: inline-flex; }
-	.admin-sidebar {
-		transform: translateX(-110%);
-		transition: transform .22s ease;
-		width: 260px;
-	}
-	.admin-close-btn { display: inline-flex; }
-	.sidebar-minimizer { display: none; }
-	.admin-workspace {
-		margin-left: 0;
-	}
-	.admin-shell.sidebar-open .admin-workspace {
-		pointer-events: none;
-	}
-}
+    .admin-toggle-btn { display: inline-flex; }
+    .admin-sidebar {
+        position: fixed !important;
+        left: 0;
+        top: 72px;
+        width: 260px;
+        height: calc(100vh - 72px);
+        max-height: calc(100vh - 72px);
+        transform: translateX(-110%);
+        transition: transform .22s ease;
+    }
+    .admin-shell.sidebar-open .admin-sidebar {
+        transform: translateX(0);
+    }
+    .admin-close-btn { display: inline-flex; }
+    .sidebar-minimizer { display: none; }
+    .admin-workspace {
+        margin-left: 0;
+    }
+    .admin-shell.sidebar-open .admin-workspace {
+        pointer-events: none;
+    }
 
-/* Sidebar minimizer button */
+    /* ensure overlay doesn't cover the topbar */
+    .admin-shell .admin-overlay {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(100vh - 72px);
+    }
+
+    /* position the close button inside the sidebar header area */
+    .admin-sidebar .admin-close-btn {
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        display: inline-flex;
+        z-index: 1101;
+    }
+
+    /* prevent background scrolling when sidebar is open on mobile */
+    .admin-shell.sidebar-open { overflow: hidden; }
+}/* Sidebar minimizer button */
 .sidebar-minimizer { display:flex; justify-content:center; }
 .admin-collapse-btn {
 	background: rgba(255,255,255,0.06);
@@ -2170,13 +2202,14 @@ button.admin-nav-link:focus-visible {
 	}
 
 	.admin-sidebar {
-		width: 100%;
-		flex-direction: row;
+		/* keep off-canvas fixed sidebar layout on mobile; reduce padding */
+		width: 260px;
+		flex-direction: column;
 		align-items: flex-start;
 		gap: 18px;
-		padding: 24px 18px;
+		padding: 18px 14px;
 		box-shadow: none;
-		border-bottom: 1px solid rgba(47, 143, 106, .18);
+		border-bottom: 1px solid rgba(47, 143, 106, .08);
 	}
 
 	.sidebar-brand {
@@ -3327,33 +3360,36 @@ button.admin-nav-link:focus-visible {
 	.admin-sidebar {
 		position: fixed;
 		left: 0;
-		top: 0;
+		top: 72px;
 		width: 220px;
+		height: calc(100vh - 72px);
+		max-height: calc(100vh - 72px);
 		z-index: 1000;
 	}
-	
+
 	.admin-workspace {
-		margin-left: 220px;
+		margin-left: 0;
 	}
-	
+
 	.admin-topbar {
 		padding: 16px 20px;
 	}
-	
+
 	.admin-main {
 		padding: 20px;
 	}
-}
-
-@media (max-width: 600px) {
+}@media (max-width: 600px) {
 	.admin-sidebar {
 		width: 200px;
 		padding: 24px 16px 20px;
 		gap: 20px;
+		top: 72px;
+		height: calc(100vh - 72px);
+		max-height: calc(100vh - 72px);
 	}
-	
+
 	.admin-workspace {
-		margin-left: 200px;
+		margin-left: 0;
 	}
 	
 	.topbar-title h1 {
