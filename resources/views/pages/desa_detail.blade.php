@@ -2,14 +2,6 @@
 
 @section('content')
 <div class="container" style="padding: 40px 20px 60px;">
-    <!-- Back Button -->
-    <div class="desa-detail-back">
-        <a href="{{ route('pages.data_pegawai') }}" class="back-link">
-            <i class="fa-solid fa-arrow-left"></i>
-            Kembali ke Daftar Desa
-        </a>
-    </div>
-
     <!-- Header Desa -->
     <div class="desa-detail-header">
         <div class="desa-header-content">
@@ -150,8 +142,7 @@
             @endif
         </section>
     </div>
-
-    <!-- Statistik Singkat -->
+        <!-- Statistik Singkat -->
     <section class="desa-detail-summary">
         <h2 class="section-title">Ringkasan Data Desa</h2>
         <div class="summary-grid">
@@ -185,5 +176,13 @@
             </div>
         </div>
     </section>
+
+    <!-- Back Button (moved below summary) -->
+    <div class="desa-detail-back" style="margin-top:18px;">
+        <a href="{{ route('pages.data_pegawai') }}" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            Kembali ke Daftar Desa
+        </a>
+    </div>
 </div>
 @endsection
