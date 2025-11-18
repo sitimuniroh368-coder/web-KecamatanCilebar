@@ -20,6 +20,8 @@ class Profile extends Model
         'content',
         'tugas_fungsi',
         'sejarah',
+        'visi',
+        'misi',
     ];
 
     public static function getProfile()

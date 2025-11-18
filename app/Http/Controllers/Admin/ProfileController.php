@@ -23,12 +23,16 @@ class ProfileController extends Controller
             'content' => 'required|string',
             'tugas_fungsi' => 'nullable|string',
             'sejarah' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
         ]);
 
         $profile = Profile::firstOrCreate(['id' => 1]);
         $profile->content = $data['content'];
         $profile->tugas_fungsi = $data['tugas_fungsi'] ?? null;
         $profile->sejarah = $data['sejarah'] ?? null;
+        $profile->visi = $data['visi'] ?? null;
+        $profile->misi = $data['misi'] ?? null;
         $profile->save();
 
         return back()->with('success', 'Profil berhasil diperbarui.');

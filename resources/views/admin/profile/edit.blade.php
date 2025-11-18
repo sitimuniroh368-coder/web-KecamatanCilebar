@@ -26,6 +26,18 @@
             <p class="input-help">Sejarah singkat Kecamatan Cilebar (opsional).</p>
         </div>
 
+        <div class="row">
+            <label for="visi">Visi</label>
+            <textarea id="visi" name="visi" rows="6">{{ old('visi', $profile->visi) }}</textarea>
+            <p class="input-help">Visi kecamatan (opsional).</p>
+        </div>
+
+        <div class="row">
+            <label for="misi">Misi</label>
+            <textarea id="misi" name="misi" rows="6">{{ old('misi', $profile->misi) }}</textarea>
+            <p class="input-help">Misi kecamatan (pisahkan poin dengan enter).</p>
+        </div>
+
         <button class="btn" type="submit">Simpan</button>
     </form>
 @endsection
