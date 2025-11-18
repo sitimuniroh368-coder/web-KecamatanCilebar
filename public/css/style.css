@@ -1120,6 +1120,29 @@ button.admin-nav-link:focus-visible {
 	display: block;
 }
 
+/* Desktop: sidebar always visible (min-width: 969px) */
+@media (min-width: 969px) {
+	.admin-sidebar {
+		position: fixed !important;
+		left: 0;
+		top: 0;
+		width: 260px;
+		height: 100vh;
+		transform: translateX(0) !important;
+		z-index: 1000;
+	}
+	.admin-shell.sidebar-open .admin-sidebar {
+		transform: translateX(0) !important;
+	}
+	.admin-workspace {
+		margin-left: 260px !important;
+	}
+	.admin-toggle-btn { display: none !important; }
+	.admin-close-btn { display: none !important; }
+	.admin-shell .admin-overlay { display: none !important; }
+	.sidebar-minimizer { display: flex; }
+}
+
 /* Collapsed behavior for desktop (optional minimizer) */
 .admin-shell.sidebar-collapsed .admin-sidebar {
 	width: 72px;
@@ -1139,29 +1162,29 @@ button.admin-nav-link:focus-visible {
 @media (max-width: 968px) {
     .admin-toggle-btn { display: inline-flex; }
     .admin-sidebar {
-        position: fixed !important;
+        position: fixed;
         left: 0;
         top: 0;
         width: 260px;
         height: 100vh;
         max-height: 100vh;
         transform: translateX(-100%);
-        transition: transform .3s ease-out;
+        transition: transform 0.3s ease-out;
         z-index: 999;
     }
     .admin-shell.sidebar-open .admin-sidebar {
         transform: translateX(0);
     }
     .admin-close-btn { display: inline-flex; }
-    .sidebar-minimizer { display: none; }
+    .sidebar-minimizer { display: none !important; }
     .admin-workspace {
-        margin-left: 0;
+        margin-left: 0 !important;
     }
     .admin-shell.sidebar-open .admin-workspace {
         pointer-events: none;
     }
 
-    /* overlay covers entire screen but starts below topbar visibility */
+    /* overlay covers entire screen */
     .admin-shell .admin-overlay {
         position: fixed;
         top: 0;
