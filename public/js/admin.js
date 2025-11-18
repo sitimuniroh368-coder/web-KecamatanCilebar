@@ -93,6 +93,33 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Hide the original message
 		successMessage.style.display = 'none';
 	}
+
+	// Sidebar toggle for mobile / minimizer
+	const adminShell = document.querySelector('.admin-shell');
+	const toggleBtn = document.querySelector('.admin-toggle-btn');
+	const overlay = document.createElement('div');
+	overlay.className = 'admin-overlay';
+	if (adminShell) adminShell.appendChild(overlay);
+
+	function openSidebar() {
+		adminShell.classList.add('sidebar-open');
+	}
+
+	function closeSidebar() {
+		adminShell.classList.remove('sidebar-open');
+	}
+
+	if (toggleBtn) {
+		toggleBtn.addEventListener('click', function () {
+			if (adminShell.classList.contains('sidebar-open')) {
+				closeSidebar();
+			} else {
+				openSidebar();
+			}
+		});
+	}
+
+	overlay.addEventListener('click', closeSidebar);
 });
 
 

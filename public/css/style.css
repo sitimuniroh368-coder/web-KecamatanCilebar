@@ -1073,6 +1073,7 @@ button.admin-nav-link:focus-visible {
 	flex-direction: column;
 	min-height: 100vh;
 	margin-left: 260px;
+	transition: margin-left .22s ease;
 }
 
 .admin-topbar {
@@ -1086,6 +1087,57 @@ button.admin-nav-link:focus-visible {
 	position: sticky;
 	top: 0;
 	z-index: 40;
+}
+
+/* Toggle button in topbar */
+.admin-toggle-btn {
+	display: none;
+	background: transparent;
+	border: none;
+	font-size: 20px;
+	padding: 6px 8px;
+	margin-right: 12px;
+	cursor: pointer;
+}
+
+.admin-shell.sidebar-open .admin-sidebar {
+	transform: translateX(0);
+}
+
+.admin-shell .admin-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.4);
+	z-index: 900;
+	display: none;
+}
+
+.admin-shell.sidebar-open .admin-overlay {
+	display: block;
+}
+
+/* Collapsed behavior for desktop (optional minimizer) */
+.admin-shell.sidebar-collapsed .admin-sidebar {
+	width: 72px;
+}
+.admin-shell.sidebar-collapsed .admin-workspace {
+	margin-left: 72px;
+}
+
+/* Mobile: hide sidebar by default and show toggle */
+@media (max-width: 968px) {
+	.admin-toggle-btn { display: inline-flex; }
+	.admin-sidebar {
+		transform: translateX(-110%);
+		transition: transform .22s ease;
+		width: 260px;
+	}
+	.admin-workspace {
+		margin-left: 0;
+	}
+	.admin-shell.sidebar-open .admin-workspace {
+		pointer-events: none;
+	}
 }
 
 .admin-topbar h1 {

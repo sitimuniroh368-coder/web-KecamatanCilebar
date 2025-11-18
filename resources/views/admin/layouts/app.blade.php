@@ -14,6 +14,9 @@
 
         <div class="admin-workspace">
             <header class="admin-topbar">
+                <button class="admin-toggle-btn" aria-label="Toggle sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
                 <div class="topbar-title">
                     <h1>@yield('page-title', 'Dashboard')</h1>
                     <p>@yield('page-subtitle', 'Kelola informasi Kecamatan Cilebar')</p>
