@@ -178,7 +178,7 @@
     </section>
 
     <!-- Back Button (moved below summary) -->
-    <div class="desa-detail-back" style="margin-top:18px;">
+    <div class="desa-detail-back">
         <a href="{{ route('pages.data_pegawai') }}" class="back-link">
             <i class="fa-solid fa-arrow-left"></i>
             Kembali ke Daftar Desa
