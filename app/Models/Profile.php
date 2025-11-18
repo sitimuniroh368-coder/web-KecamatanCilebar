@@ -18,6 +18,8 @@ class Profile extends Model
     protected $fillable = [
         'id',
         'content',
+        'tugas_fungsi',
+        'sejarah',
     ];
 
     public static function getProfile()

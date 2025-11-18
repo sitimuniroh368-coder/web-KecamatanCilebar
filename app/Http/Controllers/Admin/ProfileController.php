@@ -21,10 +21,14 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'content' => 'required|string',
+            'tugas_fungsi' => 'nullable|string',
+            'sejarah' => 'nullable|string',
         ]);
 
         $profile = Profile::firstOrCreate(['id' => 1]);
         $profile->content = $data['content'];
+        $profile->tugas_fungsi = $data['tugas_fungsi'] ?? null;
+        $profile->sejarah = $data['sejarah'] ?? null;
         $profile->save();
 
         return back()->with('success', 'Profil berhasil diperbarui.');

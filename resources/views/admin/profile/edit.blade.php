@@ -14,6 +14,18 @@
             <p class="input-help">Isi dengan sejarah, visi misi, struktur organisasi, dan informasi lain.</p>
         </div>
 
+        <div class="row">
+            <label for="tugas_fungsi">Tugas & Fungsi</label>
+            <textarea id="tugas_fungsi" name="tugas_fungsi" rows="8">{{ old('tugas_fungsi', $profile->tugas_fungsi) }}</textarea>
+            <p class="input-help">Deskripsikan tugas dan fungsi Kecamatan Cilebar.</p>
+        </div>
+
+        <div class="row">
+            <label for="sejarah">Sejarah Kecamatan</label>
+            <textarea id="sejarah" name="sejarah" rows="8">{{ old('sejarah', $profile->sejarah) }}</textarea>
+            <p class="input-help">Sejarah singkat Kecamatan Cilebar (opsional).</p>
+        </div>
+
         <button class="btn" type="submit">Simpan</button>
     </form>
 @endsection
