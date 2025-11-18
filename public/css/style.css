@@ -1205,6 +1205,16 @@ button.admin-nav-link:focus-visible {
 
     /* prevent background scrolling when sidebar is open on mobile */
     .admin-shell.sidebar-open { overflow: hidden; }
+
+    /* Disable collapsed state on mobile - always show full width sidebar with text */
+    .admin-shell.sidebar-collapsed .admin-sidebar {
+        width: 260px !important;
+    }
+    .admin-shell.sidebar-collapsed .brand-copy { display: block !important; }
+    .admin-shell.sidebar-collapsed .admin-nav-link span { display: inline !important; }
+    .admin-shell.sidebar-collapsed .admin-nav-link { justify-content: flex-start !important; padding-left: 14px !important; padding-right: 14px !important; }
+    .admin-shell.sidebar-collapsed .admin-nav-link .nav-icon { width: 28px !important; height: 28px !important; }
+    .admin-shell.sidebar-collapsed .sidebar-footer { display: block !important; }
 }/* Sidebar minimizer button */
 .sidebar-minimizer { display:flex; justify-content:center; }
 .admin-collapse-btn {
