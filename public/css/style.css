@@ -1026,14 +1026,15 @@ button.admin-nav-link:focus-visible {
 }
 
 .admin-nav-link.is-active {
-	background: #ffffff;
-	color: #1e6f54;
-	box-shadow: 0 18px 36px rgba(17, 94, 63, .2);
+	background: rgba(255, 255, 255, .15);
+	color: #ffffff;
+	border-left: 3px solid #ffffff;
+	padding-left: 9px;
 }
 
 .admin-nav-link.is-active .nav-icon {
-	background: rgba(47, 143, 106, .16);
-	color: #1e6f54;
+	background: rgba(255, 255, 255, .25);
+	color: #ffffff;
 }
 
 .sidebar-footer {
@@ -1063,16 +1064,26 @@ button.admin-nav-link:focus-visible {
 	border: none;
 	color: rgba(255, 255, 255, .88);
 	font-weight: 600;
-	padding: 12px 14px;
+	padding: 10px 12px;
+	gap: 12px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background .2s, color .2s;
 }
 
 .admin-nav-link--logout .nav-icon {
-	background: rgba(255, 255, 255, .18);
+	background: rgba(255, 255, 255, .16);
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	flex-shrink: 0;
 }
 
 .admin-nav-link--logout:hover {
-	background: rgba(255, 255, 255, .18);
-	transform: translateX(4px);
+	background: rgba(255, 255, 255, .12);
 	color: #ffffff;
 }
 
@@ -1297,6 +1308,18 @@ button.admin-nav-link:focus-visible {
     }
     .admin-shell.sidebar-collapsed .sidebar-footer { 
         display: block !important; 
+    }
+    
+    /* Mobile specific nav styling */
+    .admin-sidebar .admin-nav-link {
+        border-radius: 8px;
+    }
+    
+    .admin-sidebar .admin-nav-link.is-active {
+        background: rgba(255, 255, 255, .12);
+        border-left: none;
+        padding-left: 12px;
+        box-shadow: none;
     }
 }/* Sidebar minimizer button */
 .sidebar-minimizer { display:flex; justify-content:center; }
