@@ -1012,7 +1012,6 @@ button.admin-nav-link:focus-visible {
 
 .admin-nav-link:hover {
 	background: rgba(255, 255, 255, .18);
-	transform: translateX(4px);
 	color: #ffffff;
 }
 
@@ -1171,6 +1170,9 @@ button.admin-nav-link:focus-visible {
         transform: translateX(-100%);
         transition: transform 0.3s ease-out;
         z-index: 999;
+        padding-top: 80px;
+        padding-bottom: 28px;
+        gap: 24px;
     }
     .admin-shell.sidebar-open .admin-sidebar {
         transform: translateX(0);
