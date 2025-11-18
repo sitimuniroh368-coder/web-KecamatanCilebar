@@ -84,6 +84,9 @@
             <span>Kec. Cilebar</span>
             <small>Panel Admin</small>
         </div>
+        <button class="admin-close-btn" aria-label="Tutup sidebar">
+            <i class="fa-solid fa-times"></i>
+        </button>
     </div>
 
     <nav class="admin-nav">
@@ -97,6 +100,12 @@
             </a>
         @endforeach
     </nav>
+
+    <div class="sidebar-minimizer">
+        <button class="admin-collapse-btn" aria-label="Minimize sidebar">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+    </div>
 
     <div class="sidebar-footer">
         <form method="post" action="{{ route('admin.logout') }}">

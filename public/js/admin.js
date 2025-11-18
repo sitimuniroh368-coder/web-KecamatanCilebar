@@ -120,6 +120,60 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	overlay.addEventListener('click', closeSidebar);
+
+	// Collapse (minimize) sidebar and persist preference
+	const collapseBtn = document.querySelector('.admin-collapse-btn');
+	const closeBtn = document.querySelector('.admin-close-btn');
+	const COLLAPSE_KEY = 'admin.sidebar.collapsed';
+
+	function setCollapsed(collapsed, save = true) {
+		if (!adminShell) return;
+		if (collapsed) {
+			adminShell.classList.add('sidebar-collapsed');
+		} else {
+			adminShell.classList.remove('sidebar-collapsed');
+		}
+		if (save) localStorage.setItem(COLLAPSE_KEY, collapsed ? '1' : '0');
+		// update collapse icon
+		if (collapseBtn) {
+			const icon = collapseBtn.querySelector('i');
+			if (icon) {
+				icon.className = collapsed ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left';
+			}
+		}
+	}
+
+	// Initialize from preference
+	try {
+		const pref = localStorage.getItem(COLLAPSE_KEY);
+		if (pref !== null) setCollapsed(pref === '1', false);
+	} catch (e) {
+		// ignore localStorage errors
+	}
+
+	if (collapseBtn) {
+		collapseBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			const collapsed = adminShell.classList.contains('sidebar-collapsed');
+			setCollapsed(!collapsed, true);
+		});
+	}
+
+	// Close button inside sidebar (mobile)
+	if (closeBtn) {
+		closeBtn.addEventListener('click', function () {
+			closeSidebar();
+		});
+	}
+
+	// Close sidebar on Esc when open
+	document.addEventListener('keydown', function (ev) {
+		if (ev.key === 'Escape') {
+			if (adminShell && adminShell.classList.contains('sidebar-open')) {
+				closeSidebar();
+			}
+		}
+	});
 });
 
 
