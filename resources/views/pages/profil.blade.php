@@ -8,6 +8,8 @@
             <button class="profile-tab is-active" data-target="#overview" role="tab" aria-selected="true">Gambaran Umum</button>
             <button class="profile-tab" data-target="#visi-misi" role="tab" aria-selected="false">Visi &amp; Misi</button>
             <button class="profile-tab" data-target="#geografi" role="tab" aria-selected="false">Geografi</button>
+            <button class="profile-tab" data-target="#tugas-fungsi" role="tab" aria-selected="false">Tugas &amp; Fungsi</button>
+            <button class="profile-tab" data-target="#sejarah" role="tab" aria-selected="false">Sejarah Kecamatan</button>
             <button class="profile-tab" data-target="#struktur" role="tab" aria-selected="false">Struktur Organisasi</button>
             <button class="profile-tab" data-target="#pegawai" role="tab" aria-selected="false">Data Pegawai</button>
         </nav>
@@ -82,6 +84,36 @@
                         <h4>Kondisi Hidrologi</h4>
                         <p>Kecamatan Cilebar dilalui oleh beberapa saluran irigasi dan sungai kecil yang menjadi sumber air bagi lahan pertanian dan tambak. Sebagian wilayah pesisirnya juga mendapatkan pengaruh dari pasang surut air laut, sehingga masyarakat di beberapa desa mengembangkan usaha tambak udang dan ikan bandeng.</p>
                     </div>
+                </div>
+            </section>
+
+            <section id="tugas-fungsi" class="profile-panel" role="tabpanel" hidden>
+                <div class="card">
+                    <h3>Tugas dan Fungsi Kecamatan Cilebar</h3>
+                    @if(isset($profile) && filled($profile->tugas_fungsi))
+                        <div>{!! nl2br(e($profile->tugas_fungsi)) !!}</div>
+                    @else
+                        <p>Berikut adalah tugas dan fungsi Kecamatan Cilebar secara umum:</p>
+                        <ul style="margin: 12px 0 18px 20px;">
+                            <li>Melaksanakan sebagian tugas pemerintahan daerah kabupaten di wilayah kecamatan.</li>
+                            <li>Menyelenggarakan pelaksanaan pembangunan di tingkat kecamatan sesuai kebijakan daerah.</li>
+                            <li>Mengkoordinasikan kegiatan pelayanan publik dan pemberdayaan masyarakat di desa-desa wilayah kecamatan.</li>
+                            <li>Mengumpulkan data dan informasi untuk perencanaan dan evaluasi program daerah.</li>
+                            <li>Melaksanakan tugas lain yang diberikan oleh Pemerintah Kabupaten sesuai ketentuan peraturan perundang-undangan.</li>
+                        </ul>
+                    @endif
+                </div>
+            </section>
+
+            <section id="sejarah" class="profile-panel" role="tabpanel" hidden>
+                <div class="card">
+                    <h3>Sejarah Kecamatan Cilebar</h3>
+                    @if(isset($profile) && filled($profile->sejarah))
+                        <div>{!! nl2br(e($profile->sejarah)) !!}</div>
+                    @else
+                        <p>Kecamatan Cilebar memiliki sejarah panjang sebagai daerah agraris di Kabupaten Karawang. Sejak masa kolonial, wilayah ini dikenal sebagai pusat pertanian padi dan tambak yang menyuplai kebutuhan pangan lokal.</p>
+                        <p>Perkembangan administratif Kecamatan Cilebar ditandai dengan pembentukan lembaga pemerintahan lokal yang terus berkembang untuk meningkatkan pelayanan publik. Seiring waktu, berbagai program pembangunan dan pemberdayaan masyarakat dilaksanakan untuk meningkatkan kesejahteraan warga.</p>
+                    @endif
                 </div>
             </section>
 
